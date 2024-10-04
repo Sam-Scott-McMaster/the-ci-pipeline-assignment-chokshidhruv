@@ -2,11 +2,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Dhruv Chokshi - 400507527; October 3rd 2024
+// Program reads user inputted arguments using argc and argv[] to output quiz questions/answers
+//
+// If an invalid flag is entered, it displays the displayBadFlag() function. 
+// If the --help flag is provided, it displays the displayHelpInfo() function.
+
+//Function made to display information when an invalid flag is provided
 void displayBadFlag(){
     printf("Usage: quiz [-#] [<answer>]\n");
     printf("Try 'quiz --help' for more information.\n");
 }
 
+//Function made to display the help info when '--help' flag is provided
 void displayHelpInfo(){
     printf("Usage: quiz [-#]... [<answer>]...\n");
     printf("Asks quiz question or check if quiz question is right or wrong to standard output.\n");
@@ -19,19 +27,23 @@ void displayHelpInfo(){
     printf("quiz -1     Outputs quiz question 2 to standard output.\n");
 }
 
+//Main function that handles logic of program
 int main(int argc, char *argv[]){
-    if (argc < 2){
+    //argc checks for argument count - how many aguments are provided
+    //*argv[] holds command-line argument value
+    
+    if (argc < 2){ //Checks if there are fewer than two arguments
         displayBadFlag();
         return EXIT_FAILURE;
     }
 
 
-    if (strcmp(argv[1], "--help") == 0){
+    if (strcmp(argv[1], "--help") == 0){ //Checks if the --help flag is provided as the second argument
         displayHelpInfo();
         return EXIT_SUCCESS;
     }
 
-    if (strcmp(argv[1], "-1") == 0){
+    if (strcmp(argv[1], "-1") == 0){ //Checks if -1 flag is provided and handles first question logic
         if (argc == 2){
             printf("What command is used to display the current working directory in Linux?\n");
         }
@@ -50,7 +62,7 @@ int main(int argc, char *argv[]){
         return EXIT_SUCCESS;
     }
 
-    if (strcmp(argv[1], "-2") == 0){
+    if (strcmp(argv[1], "-2") == 0){ //Checks if -2 flag is provided and handles second question logic
         if (argc == 2){
             printf("What is the return type for a function that does not return a value in C?\n");
         }
@@ -69,7 +81,7 @@ int main(int argc, char *argv[]){
         return EXIT_SUCCESS;
     }
 
-    if (strcmp(argv[1], "-3") == 0){
+    if (strcmp(argv[1], "-3") == 0){ //Checks if -3 flag is provided and handles third question logic
         if (argc == 2){
             printf("What command is used to get all required updates from a remote repository? Note: Make sure to add the answer using double quotation marks! Ex. \"git status\"\n");
         }
